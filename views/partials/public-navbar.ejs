@@ -46,7 +46,9 @@
 
         <details class="relative lg:hidden">
           <summary class="list-none cursor-pointer rounded-xl border border-warmth/25 bg-white/80 p-2.5 text-thought/80 hover:text-action transition-colors">
-            Menu
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
           </summary>
           <div class="absolute right-0 top-[calc(100%+10px)] w-[min(80vw,320px)] rounded-xl border border-warmth/20 bg-surface p-2 shadow-2xl">
             <% (menuItems || []).forEach((item) => { %>

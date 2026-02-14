@@ -5,54 +5,25 @@ This folder contains an Express.js rebuild of the Vivartana platform for MilesWe
 ## Requirements
 
 - Node.js 18+ (Node.js 20 recommended)
-- A PostgreSQL database
+- A MySQL database (Updated from PostgreSQL)
 - `DATABASE_URL` environment variable (Prisma)
 
 ## Environment Variables
 
-- `DATABASE_URL` (required)
-- `SESSION_SECRET` (required in production): used to sign the admin session cookie.
-  - Fallbacks supported: `NEXTAUTH_SECRET` or `AUTH_SECRET`
-- `PORT` (optional): default `3000`
-- `HOST` (optional): default `0.0.0.0`
+- `DATABASE_URL`: `mysql://USER:PASSWORD@127.0.0.1:3306/DBNAME`
+- `SESSION_SECRET`: Used to sign the admin session cookie.
+- `PORT`: default `3000`
+- `HOST`: default `0.0.0.0`
 
-See `.env.example`.
+## MilesWeb Deployment
 
-## Install / Build / Run
+1. **MySQL Setup**: Create a database and user in cPanel.
+2. **Environment**: Set `DATABASE_URL` in cPanel Node.js app using `127.0.0.1` as the host.
+3. **Build**: Run `npm run build:milesweb`.
+4. **Restart**: Restart the app in cPanel.
 
-```bash
-cd milesweb-express
-npm install
-npm run build
-npm start
-```
-
-## MilesWeb Panel Commands
-
-- Build command: `npm run build:milesweb`
-- Start command: `npm start`
-- Startup file (if MilesWeb asks): `server.js`
+## UI Changes
+- The mobile menu now uses a standard hamburger icon (three horizontal lines) for better visibility.
 
 ## Admin Login
-
 - URL: `/auth/signin`
-
-Admin users are stored in the `User` table. Passwords are expected to be bcrypt hashes (same as the Next.js version).
-
-## Database Migrations
-
-```bash
-cd milesweb-express
-npm run prisma:migrate:deploy
-```
-
-## Seed (Optional)
-
-```bash
-cd milesweb-express
-npm run prisma:seed
-```
-
-## Notes About Assets
-
-Static assets (images, logo) are served from `milesweb-express/public/assests`.
