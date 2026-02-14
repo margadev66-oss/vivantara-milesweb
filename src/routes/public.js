@@ -1,10 +1,22 @@
 const express = require("express");
+const nodemailer = require("nodemailer");
 
 const { prisma, withPrismaFallback } = require("../lib/prisma");
 const { getEditablePage } = require("../lib/editable-pages");
 const { DEFAULT_HOME_CONTENT, mergeHomeContent } = require("../lib/home-content");
 
 const router = express.Router();
+
+// Email Transporter configuration
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT || "587", 10),
+  secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
 router.get("/", (req, res) => res.redirect("/home"));
 
@@ -80,8 +92,25 @@ router.post("/contact", async (req, res, next) => {
     const subject = String(req.body.subject || "").trim();
     const message = String(req.body.message || "").trim();
 
+    // Save to database
     await prisma.contactSubmission.create({
       data: { name, email, subject, message },
+    });
+
+    // Send email notification
+    const mailOptions = {
+      from: `"Vivartana Website" <${process.env.SMTP_USER}>`,
+      to: process.env.CONTACT_EMAIL_TO || process.env.SMTP_USER,
+      subject: `New Enquiry: ${subject}`,
+      text: `You have received a new message from ${name} (${email}):\n\nSubject: ${subject}\n\nMessage:\n${message}`,
+      html: `<p>You have received a new message from <strong>${name}</strong> (${email}):</p>
+             <p><strong>Subject:</strong> ${subject}</p>
+             <p><strong>Message:</strong></p>
+             <p>${message.replace(/\n/g, "<br>")}</p>`,
+    };
+
+    transporter.sendMail(mailOptions).catch((err) => {
+      console.error("Error sending email:", err);
     });
 
     res.redirect("/contact?sent=1");

@@ -15,6 +15,17 @@ This folder contains an Express.js rebuild of the Vivartana platform for MilesWe
 - `PORT`: default `3000`
 - `HOST`: default `0.0.0.0`
 
+## Email Configuration (SMTP)
+
+To receive contact form submissions via email, set the following environment variables in cPanel:
+
+- `SMTP_HOST`: Your SMTP server (e.g., mail.vivantara.com)
+- `SMTP_PORT`: Usually 587 or 465
+- `SMTP_SECURE`: `true` if port is 465, otherwise `false`
+- `SMTP_USER`: Your email address
+- `SMTP_PASS`: Your email password
+- `CONTACT_EMAIL_TO`: The address that should receive the enquiries
+
 ## MilesWeb Deployment
 
 1. **MySQL Setup**: Create a database and user in cPanel.

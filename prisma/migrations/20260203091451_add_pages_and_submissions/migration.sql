@@ -6,34 +6,34 @@
 
 */
 -- AlterTable
-ALTER TABLE "Post" ADD COLUMN     "slug" TEXT NOT NULL;
+ALTER TABLE `Post` ADD COLUMN     `slug` VARCHAR(191) NOT NULL;
 
 -- CreateTable
-CREATE TABLE "Page" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "content" TEXT NOT NULL,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
+CREATE TABLE `Page` (
+    `id` VARCHAR(191) NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
+    `content` LONGTEXT NOT NULL,
+    `updatedAt` DATETIME(3) NOT NULL,
 
-    CONSTRAINT "Page_pkey" PRIMARY KEY ("id")
-);
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE "ContactSubmission" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "subject" TEXT NOT NULL,
-    "message" TEXT NOT NULL,
-    "read" BOOLEAN NOT NULL DEFAULT false,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE `ContactSubmission` (
+    `id` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `subject` VARCHAR(191) NOT NULL,
+    `message` LONGTEXT NOT NULL,
+    `read` BOOLEAN NOT NULL DEFAULT false,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    CONSTRAINT "ContactSubmission_pkey" PRIMARY KEY ("id")
-);
-
--- CreateIndex
-CREATE UNIQUE INDEX "Page_slug_key" ON "Page"("slug");
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Post_slug_key" ON "Post"("slug");
+CREATE UNIQUE INDEX `Page_slug_key` ON `Page`(`slug`);
+
+-- CreateIndex
+CREATE UNIQUE INDEX `Post_slug_key` ON `Post`(`slug`);

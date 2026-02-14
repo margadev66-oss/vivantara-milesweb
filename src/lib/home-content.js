@@ -48,14 +48,14 @@ const DEFAULT_HOME_CONTENT = {
       "Vivartana follows a structured, iterative workflow to progressively strengthen organisational stress response.",
     steps: [
       {
-        title: "ORI Scan(TM)",
+        title: "ORI Scan™",
         description:
           "A proprietary diagnostic exercise to understand how the organisation actually behaves under pressure through structured conversations and observations.",
       },
       {
         title: "Roadmap",
         description:
-          "Insights from the ORI Scan(TM) are translated into practical focus areas involving leadership behaviour, role design, Cognitive Diversity and Neurodiversity, and psychosocial alignment.",
+          "Insights from the ORI Scan™ are translated into practical focus areas involving leadership behaviour, role design, Cognitive Diversity and Neurodiversity, and psychosocial alignment.",
       },
       {
         title: "Transformation Engagement",
@@ -66,7 +66,7 @@ const DEFAULT_HOME_CONTENT = {
     cycle_title: "The Iterative Cycle",
     cycle_stages: ["Scan", "Interpret", "Strengthen", "Re-Scan"],
     cycle_body:
-      "At any point, the organisation operates at a certain level of maturity known as its Organisational Operating System (OOS(TM)). As successive cycles strengthen the OOS(TM), the organisation's Antifragility Achievement Index (AAI(TM)) improves, indicating a growing ability to function coherently and grow stronger through stress and disruption.",
+      "At any point, the organisation operates at a certain level of maturity known as its Organisational Operating System (OOS™). As successive cycles strengthen the OOS™, the organisation's Antifragility Achievement Index (AAI™) improves, indicating a growing ability to function coherently and grow stronger through stress and disruption.",
   },
   about_founder: {
     eyebrow: "About the Founder",
@@ -174,4 +174,3 @@ function mergeHomeContent(overrides) {
 }
 
 module.exports = { DEFAULT_HOME_CONTENT, mergeHomeContent };
-
