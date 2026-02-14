@@ -6,16 +6,17 @@
   "scripts": {
     "dev": "node server.js",
     "env:check:milesweb": "node -e \"require('dotenv').config(); const req=['DATABASE_URL']; const optSecret=['SESSION_SECRET','NEXTAUTH_SECRET','AUTH_SECRET']; const missing=req.filter(k=>!process.env[k]); const hasSecret=optSecret.some(k=>Boolean(process.env[k])); if(missing.length||!hasSecret){ console.error('Missing required env vars: '+[...missing,...(!hasSecret?['SESSION_SECRET (or NEXTAUTH_SECRET/AUTH_SECRET)']:[])].join(', ')); process.exit(1) } console.log('MilesWeb env check passed')\"",
-    "build:css": "postcss src/styles.css -o public/styles.css",
-    "build": "npm run prisma:generate && npm run build:css",
+    "build:css": "node -e \"const fs=require('fs'); const path=require('path'); const p=process.env.npm_package_json; let base=process.cwd(); if(p){ try{ base=path.dirname(fs.realpathSync(p)); } catch { base=path.dirname(p); } } require(path.join(base,'scripts','build-css.cjs'));\"",
+    "build": "node -e \"const fs=require('fs'); const path=require('path'); const p=process.env.npm_package_json; let base=process.cwd(); if(p){ try{ base=path.dirname(fs.realpathSync(p)); } catch { base=path.dirname(p); } } require(path.join(base,'scripts','build.cjs'));\"",
     "build:milesweb": "npm run env:check:milesweb && npm run build",
-    "postinstall": "npm run prisma:generate",
+    "postinstall": "node -e \"const fs=require('fs'); const path=require('path'); const p=process.env.npm_package_json; let base=process.cwd(); if(p){ try{ base=path.dirname(fs.realpathSync(p)); } catch { base=path.dirname(p); } } require(path.join(base,'scripts','prisma-generate.cjs'));\"",
     "start": "node server.js",
-    "prisma:generate": "prisma generate",
+    "prisma:generate": "node -e \"const fs=require('fs'); const path=require('path'); const p=process.env.npm_package_json; let base=process.cwd(); if(p){ try{ base=path.dirname(fs.realpathSync(p)); } catch { base=path.dirname(p); } } require(path.join(base,'scripts','prisma-generate.cjs'));\"",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:seed": "node prisma/seed.js"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
     "@prisma/client": "^6.19.2",
     "bcryptjs": "^3.0.3",
     "cookie-session": "^2.1.0",
@@ -23,13 +24,12 @@
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "nodemailer": "^8.0.1",
-    "sanitize-html": "^2.17.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
     "prisma": "^6.19.2",
+    "sanitize-html": "^2.17.0"
+  },
+  "devDependencies": {
     "tailwindcss": "^4.1.18"
   }
 }
