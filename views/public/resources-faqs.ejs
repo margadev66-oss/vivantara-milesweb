@@ -1,0 +1,80 @@
+<%- include("../partials/public-start", { title }) %>
+
+<% const faqs = [
+  {
+    question: "What is Organisational Stress Response (OSR)?",
+    answer:
+      "Organisational Stress Response refers to how people within an organisation sense, interpret, coordinate, and hold together when the organisation is under pressure, ambiguity, or disruption. It reveals the underlying maturity of the organisation beyond processes and strategy.",
+  },
+  {
+    question: "What is the ORI Scan(TM)?",
+    answer:
+      "ORI Scan(TM) stands for Organisational Response Imaging. It is a proprietary diagnostic exercise used to understand how an organisation actually behaves under stress through structured conversations and observations.",
+  },
+  {
+    question: "What is OOS(TM) (Organisational Operating System)?",
+    answer:
+      "OOS(TM) represents the current operating maturity of an organisation in how it responds to challenges and disruption. As organisations strengthen the dimensions revealed through the ORI Scan(TM), their OOS(TM) progressively matures.",
+  },
+  {
+    question: "What is Antifragility and AAI(TM)?",
+    answer:
+      "Antifragility is the state where an organisation not only withstands stress but grows stronger through it. The Antifragility Achievement Index (AAI(TM)) indicates how well an organisation's current OOS(TM) supports coherent functioning under pressure.",
+  },
+  {
+    question: "How is this different from consulting or training?",
+    answer:
+      "Vivartana does not focus on introducing new processes or conducting training programmes. The work focuses on strengthening the underlying organisational dimensions that shape behaviour when the organisation is tested.",
+  },
+  {
+    question: "Why are Cognitive Diversity and Neurodiversity important here?",
+    answer:
+      "Different cognitive strengths become especially valuable under stress and ambiguity. Recognising and aligning these strengths to roles and situations can significantly improve how organisations function when tested.",
+  },
+  {
+    question: "Who should consider engaging with Vivartana?",
+    answer:
+      "Organisations operating in fast-changing, high-pressure environments, or those experiencing gaps between leadership intent and team behaviour, often find this engagement particularly valuable.",
+  },
+  {
+    question: "How long does an engagement typically last?",
+    answer:
+      "Engagements are iterative and unfold over time through repeated ORI Scan(TM) cycles, roadmap development, and ongoing transformation work.",
+  },
+  {
+    question: "How can we begin?",
+    answer:
+      "The journey typically begins with an ORI Scan(TM) to understand how the organisation currently behaves under pressure.",
+  },
+]; %>
+
+<main class="relative min-h-screen bg-canvas pt-12 pb-24 px-6 overflow-hidden">
+  <img src="/assests/resoursces/bg2.jpeg" alt="Resources FAQs background image" class="absolute inset-0 h-full w-full object-cover object-center" />
+  <div class="absolute inset-0 bg-gradient-to-b from-canvas/68 via-canvas/88 to-canvas/96"></div>
+
+  <div class="container mx-auto max-w-7xl relative z-10">
+    <h1 class="text-4xl md:text-6xl font-serif text-thought mb-8">Frequently Asked Questions</h1>
+
+    <div class="space-y-5 mb-12">
+      <% faqs.forEach((item) => { %>
+        <article class="border border-warmth/20 bg-white p-8 md:p-10">
+          <h2 class="text-2xl font-serif text-thought mb-4"><%= item.question %></h2>
+          <p class="text-thought/75 text-lg leading-relaxed"><%= item.answer %></p>
+        </article>
+      <% }) %>
+    </div>
+
+    <section class="border border-thought/10 bg-thought text-white p-8 md:p-10">
+      <h2 class="text-3xl font-serif mb-4">Ready to begin?</h2>
+      <p class="text-white text-lg leading-relaxed mb-8">
+        Start with a conversation to explore how your organisation behaves under pressure.
+      </p>
+      <a href="/contact" class="cta-button px-7 py-4 text-base">
+        Start the conversation <span class="opacity-80">-&gt;</span>
+      </a>
+    </section>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

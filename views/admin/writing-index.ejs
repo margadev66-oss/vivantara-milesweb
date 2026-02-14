@@ -1,0 +1,54 @@
+<%- include("../partials/admin-start", { title }) %>
+
+<div class="flex justify-between items-center mb-8">
+  <h1 class="text-3xl font-serif text-thought">Articles</h1>
+  <a href="/admin/writing/new" class="flex items-center space-x-2 bg-action text-white px-4 py-2 font-medium hover:bg-action/90 transition-colors">
+    <span>New Post</span>
+  </a>
+</div>
+
+<% if (saved) { %>
+  <div class="mb-6 border border-action/30 bg-white p-4 text-thought/80">Saved.</div>
+<% } %>
+
+<div class="bg-white border border-warmth/20">
+  <table class="w-full text-left">
+    <thead class="bg-warmth/10 border-b border-warmth/20">
+      <tr>
+        <th class="p-4 font-serif text-thought">Title</th>
+        <th class="p-4 font-serif text-thought">Category</th>
+        <th class="p-4 font-serif text-thought">Status</th>
+        <th class="p-4 font-serif text-thought text-right">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (posts || []).forEach((post) => { %>
+        <tr class="border-b border-warmth/10 last:border-0 hover:bg-warmth/5">
+          <td class="p-4 font-medium"><%= post.title %></td>
+          <td class="p-4 text-thought/70"><%= post.category %></td>
+          <td class="p-4">
+            <span class="px-2 py-1 text-xs font-bold uppercase tracking-wider <%= post.published ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' %>">
+              <%= post.published ? 'Published' : 'Draft' %>
+            </span>
+          </td>
+          <td class="p-4 text-right space-x-2">
+            <a href="/admin/writing/<%= encodeURIComponent(post.id) %>" class="inline-block p-2 text-thought/60 hover:text-action transition-colors">
+              Edit
+            </a>
+            <form method="post" action="/admin/writing/<%= encodeURIComponent(post.id) %>/delete" class="inline-block" onsubmit="return confirm('Delete this post?');">
+              <button type="submit" class="p-2 text-thought/60 hover:text-red-500 transition-colors">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+      <% if (!posts || posts.length === 0) { %>
+        <tr>
+          <td colspan="4" class="p-8 text-center text-thought/60">No posts found. Create one to get started.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("../partials/admin-end") %>
+

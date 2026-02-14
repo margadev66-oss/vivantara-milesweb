@@ -1,0 +1,39 @@
+<%- include("./document-start", { title }) %>
+<div class="min-h-screen bg-canvas flex">
+  <aside class="w-64 border-r border-warmth/20 bg-white flex flex-col">
+    <div class="p-6 border-b border-warmth/20">
+      <h2 class="text-xl font-serif font-bold text-thought">Vivartana Admin</h2>
+      <p class="text-xs text-thought/60 mt-1"><%= sessionUser?.email || "" %></p>
+    </div>
+
+    <nav class="flex-1 p-4 space-y-2">
+      <a href="/admin" class="flex items-center space-x-3 px-4 py-3 text-thought/80 hover:bg-warmth/10 hover:text-action rounded-none transition-colors">
+        <span class="font-medium">Dashboard</span>
+      </a>
+      <a href="/admin/settings" class="flex items-center space-x-3 px-4 py-3 text-thought/80 hover:bg-warmth/10 hover:text-action rounded-none transition-colors">
+        <span class="font-medium">Global Settings</span>
+      </a>
+      <a href="/admin/pages" class="flex items-center space-x-3 px-4 py-3 text-thought/80 hover:bg-warmth/10 hover:text-action rounded-none transition-colors">
+        <span class="font-medium">Pages Content</span>
+      </a>
+      <a href="/admin/menu" class="flex items-center space-x-3 px-4 py-3 text-thought/80 hover:bg-warmth/10 hover:text-action rounded-none transition-colors">
+        <span class="font-medium">Menu Management</span>
+      </a>
+      <a href="/admin/writing" class="flex items-center space-x-3 px-4 py-3 text-thought/80 hover:bg-warmth/10 hover:text-action rounded-none transition-colors">
+        <span class="font-medium">Articles</span>
+      </a>
+      <a href="/admin/enquiries" class="flex items-center space-x-3 px-4 py-3 text-thought/80 hover:bg-warmth/10 hover:text-action rounded-none transition-colors">
+        <span class="font-medium">Enquiries</span>
+      </a>
+    </nav>
+
+    <div class="p-4 border-t border-warmth/20">
+      <a href="/auth/signout" class="flex items-center space-x-3 px-4 py-3 text-red-500 hover:bg-red-50 transition-colors">
+        <span class="font-medium">Sign Out</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="flex-1 overflow-y-auto">
+    <div class="p-8 max-w-5xl mx-auto">
+

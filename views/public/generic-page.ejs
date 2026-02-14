@@ -1,0 +1,18 @@
+<%- include("../partials/public-start", { title }) %>
+<main class="min-h-screen bg-canvas pt-12 pb-24 px-6">
+  <div class="container mx-auto max-w-7xl">
+    <h1 class="text-4xl md:text-5xl font-serif text-thought mb-12"><%= page ? page.title : title %></h1>
+
+    <% if (!page) { %>
+      <div class="p-6 border border-warmth/20 bg-white">
+        <p class="text-thought/70">Content for <%= fullSlug %> has not been created yet.</p>
+      </div>
+    <% } else { %>
+      <div class="prose prose-lg prose-headings:font-serif prose-headings:text-thought prose-p:text-thought/90 prose-a:text-action max-w-none">
+        <%- page.content %>
+      </div>
+    <% } %>
+  </div>
+</main>
+<%- include("../partials/public-end") %>
+

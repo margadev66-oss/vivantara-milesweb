@@ -1,0 +1,76 @@
+<%- include("../partials/public-start", { title }) %>
+
+<% const researchFocusAreas = [
+  "How people interpret complex situations",
+  "How teams coordinate under strain",
+  "How leadership behaviour shapes collective response",
+  "How Cognitive Diversity and Neurodiversity affect performance in demanding situations",
+  "How organisations can progressively strengthen their ability to function coherently under pressure",
+]; %>
+
+<% const practicalFrameworks = [
+  "Organisational Stress Response",
+  "ORI Scan(TM) (Organisational Response Imaging)",
+  "Organisational Operating System (OOS(TM))",
+  "Antifragility Achievement Index (AAI(TM))",
+]; %>
+
+<main class="relative min-h-screen bg-canvas pt-12 pb-24 px-6 overflow-hidden">
+  <img src="/assests/research/bg.jpg" alt="Research introduction background image" class="absolute inset-0 h-full w-full object-cover object-center" />
+  <div class="absolute inset-0 bg-gradient-to-b from-canvas/48 via-canvas/70 to-canvas/86"></div>
+
+  <div class="container mx-auto max-w-7xl relative z-10">
+    <h1 class="text-4xl md:text-6xl font-serif text-thought mb-8">Introduction</h1>
+
+    <div class="space-y-6 text-thought/75 text-lg leading-relaxed max-w-4xl mb-14">
+      <p>
+        Vivartana's work is closely informed by ongoing doctoral research into how organisations function under stress, ambiguity, and disruption.
+      </p>
+      <p>
+        This research explores a simple but powerful idea: the way an organisation behaves when tested reveals the quality of its internal coherence.
+      </p>
+    </div>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-10">
+      <h2 class="text-3xl font-serif text-thought mb-6">What This Research Seeks to Understand</h2>
+      <p class="text-thought/75 text-lg leading-relaxed mb-6">The research examines how organisational properties influence:</p>
+      <ul class="space-y-3">
+        <% researchFocusAreas.forEach((item) => { %>
+          <li class="text-thought/80 text-lg leading-relaxed"><%= item %></li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-10">
+      <h2 class="text-3xl font-serif text-thought mb-5">Why This Matters for Organisations</h2>
+      <div class="space-y-4 text-thought/75 text-lg leading-relaxed">
+        <p>Many organisations invest heavily in process excellence, performance metrics, and strategic planning.</p>
+        <p>Yet, when unexpected challenges arise, these do not always translate into effective collective behaviour.</p>
+        <p>This research investigates why that happens and how organisations can address it at a deeper level.</p>
+      </div>
+    </section>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-12">
+      <h2 class="text-3xl font-serif text-thought mb-6">From Research to Practice</h2>
+      <p class="text-thought/75 text-lg leading-relaxed mb-6">
+        The ideas emerging from this research directly inform Vivartana's frameworks such as:
+      </p>
+      <ul class="space-y-3 mb-6">
+        <% practicalFrameworks.forEach((framework) => { %>
+          <li class="text-thought/80 text-lg leading-relaxed"><%= framework %></li>
+        <% }) %>
+      </ul>
+      <p class="text-thought/75 text-lg leading-relaxed">These are practical expressions of the research insights.</p>
+    </section>
+
+    <section class="border border-thought/10 bg-thought text-white p-8 md:p-10">
+      <h2 class="text-3xl font-serif mb-5">Closing</h2>
+      <p class="text-white text-lg leading-relaxed">
+        This research is ongoing and continues to shape how Vivartana approaches organisational transformation in real-world settings.
+      </p>
+    </section>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

@@ -1,0 +1,115 @@
+<%- include("../partials/public-start", { title }) %>
+
+<% const engagementAreas = [
+  {
+    title: "Leaders navigating pressure",
+    points: [
+      "When leadership responsibility begins to feel heavier than clarity.",
+      "Decision fatigue",
+      "Role strain",
+      "Leadership intent not translating into team behaviour",
+      "The need for personal clarity before organisational action",
+    ],
+  },
+  {
+    title: "Teams facing ambiguity",
+    points: [
+      "When capable teams begin to lose coherence as uncertainty rises.",
+      "Miscommunication under stress",
+      "Coordination breakdowns",
+      "Psychological safety concerns",
+      "Drift between intent and behaviour",
+    ],
+  },
+  {
+    title: "Organisations under strain",
+    points: [
+      "When processes exist, but alignment weakens when things go wrong.",
+      "Organisational Psyche Diagnostics",
+      "OOS(TM) mapping and alignment assessment",
+      "Culture and behavioural coherence under pressure",
+      "Diagnostic-led interventions and workshops",
+    ],
+  },
+  {
+    title: "Individuals within organisational contexts",
+    points: [
+      "When stress at work begins to affect clarity, confidence, and direction.",
+      "Coaching and counselling",
+      "Fortitude MindShift journeys",
+      "Navigating pressure with greater alignment",
+    ],
+  },
+]; %>
+
+<% const typicalInclusions = [
+  "Diagnostic conversations and assessments",
+  "Leadership and team interventions",
+  "Workshops and guided sessions",
+  "One-on-one coaching and counselling",
+  "Long-term alignment journeys",
+]; %>
+
+<main class="relative min-h-screen bg-canvas pt-12 pb-24 px-6 overflow-hidden">
+  <img src="/assests/engage-us/bg-v2.png" alt="Sunlight filtering through a misty forest" class="absolute inset-0 h-full w-full object-cover object-[30%_34%]" />
+  <div class="absolute inset-0 bg-gradient-to-b from-black/42 via-black/50 to-canvas/80"></div>
+
+  <div class="container mx-auto max-w-7xl relative z-10">
+    <% if (editablePage) { %>
+      <section class="section-card rounded-2xl p-8 md:p-10">
+        <h1 class="text-4xl md:text-6xl font-serif text-thought mb-10"><%= editablePage.title %></h1>
+        <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-thought prose-p:text-thought/85 prose-li:text-thought/85 prose-a:text-action">
+          <%- editablePage.content %>
+        </div>
+      </section>
+    <% } else { %>
+      <h1 class="text-4xl md:text-6xl font-serif text-white mb-8 drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]">How We Help</h1>
+
+      <div class="space-y-6 text-white/88 text-lg leading-relaxed max-w-4xl mb-14">
+        <p>Misalignment rarely appears as a single problem.</p>
+        <p>
+          It shows up as tension in leaders, confusion in teams, cultural drift in organisations, and quiet stress in individuals trying to hold it all together.
+        </p>
+        <p>Vivartana works at the point where these experiences meet.</p>
+      </div>
+
+      <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-12">
+        <h2 class="text-3xl font-serif text-thought mb-6">Where we engage</h2>
+        <div class="space-y-8">
+          <% engagementAreas.forEach((area) => { %>
+            <article class="border border-warmth/20 bg-canvas p-8 md:p-10">
+              <h3 class="text-2xl font-serif text-thought mb-5"><%= area.title %></h3>
+              <ul class="space-y-3">
+                <% area.points.forEach((point) => { %>
+                  <li class="text-thought/80 text-lg leading-relaxed"><%= point %></li>
+                <% }) %>
+              </ul>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-12">
+        <h2 class="text-3xl font-serif text-thought mb-6">What this work typically includes</h2>
+        <ul class="space-y-3">
+          <% typicalInclusions.forEach((item) => { %>
+            <li class="text-thought/80 text-lg leading-relaxed"><%= item %></li>
+          <% }) %>
+        </ul>
+      </section>
+
+      <section class="border border-thought/10 bg-thought text-white p-8 md:p-10">
+        <h2 class="text-3xl font-serif mb-5">A quiet note</h2>
+        <p class="text-white text-lg leading-relaxed mb-8">
+          This is not about quick fixes. It is about helping people and organisations understand how they truly behave under pressure, and realigning from there.
+        </p>
+        <a href="/engage/how-it-works" class="cta-button h-10 gap-2 px-5 text-sm whitespace-nowrap sm:text-base">
+          Understand how this works <span class="opacity-80">-&gt;</span>
+        </a>
+      </section>
+    <% } %>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

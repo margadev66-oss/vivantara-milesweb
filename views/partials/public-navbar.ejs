@@ -1,0 +1,78 @@
+<header class="sticky top-0 z-50 px-4 pt-4 md:px-6">
+  <nav class="mx-auto max-w-7xl rounded-2xl border border-warmth/20 bg-surface/85 backdrop-blur supports-[backdrop-filter]:bg-surface/78 shadow-[0_16px_40px_-28px_rgba(16,25,37,0.6)]">
+    <div class="flex h-[76px] items-center justify-between px-4 md:px-6">
+      <a href="/home" class="flex items-center gap-3">
+        <div class="relative h-9 w-9 overflow-hidden rounded-full border border-warmth/25 bg-white/85">
+          <img src="/assests/logo.png" alt="Vivartana Logo" class="h-full w-full object-cover scale-110" />
+        </div>
+        <div>
+          <p class="text-sm font-medium tracking-wide text-thought/78">Vivartana Transformation Services</p>
+        </div>
+      </a>
+
+      <div class="hidden items-center gap-8 lg:flex">
+        <% (menuItems || []).forEach((item) => { %>
+          <div class="group relative">
+            <a
+              href="<%= item.url || '#' %>"
+              class="inline-flex items-center gap-1.5 text-sm font-medium tracking-wide text-thought/78 hover:text-action transition-colors"
+            >
+              <%= item.title %>
+              <% if ((item.children || []).length > 0) { %><span class="text-xs opacity-60">v</span><% } %>
+            </a>
+
+            <% if ((item.children || []).length > 0) { %>
+              <div class="invisible absolute left-0 top-[calc(100%+14px)] w-72 translate-y-1 rounded-xl border border-warmth/20 bg-surface p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                <% item.children.forEach((child) => { %>
+                  <a
+                    href="<%= child.url || '#' %>"
+                    class="block rounded-lg px-3 py-2.5 text-sm text-thought/78 hover:bg-canvas hover:text-action transition-colors"
+                  >
+                    <%= child.title %>
+                  </a>
+                <% }) %>
+              </div>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="/contact" class="cta-button self-center h-8 rounded-lg px-2 text-[10px] leading-none whitespace-nowrap sm:px-2.5 sm:text-[11px]">
+          <span class="hidden sm:inline">Start a Conversation</span>
+          <span class="sm:hidden">Start</span>
+          <span class="opacity-80">-&gt;</span>
+        </a>
+
+        <details class="relative lg:hidden">
+          <summary class="list-none cursor-pointer rounded-xl border border-warmth/25 bg-white/80 p-2.5 text-thought/80 hover:text-action transition-colors">
+            Menu
+          </summary>
+          <div class="absolute right-0 top-[calc(100%+10px)] w-[min(80vw,320px)] rounded-xl border border-warmth/20 bg-surface p-2 shadow-2xl">
+            <% (menuItems || []).forEach((item) => { %>
+              <div class="rounded-lg">
+                <a href="<%= item.url || '#' %>" class="block rounded-lg px-3 py-2 text-sm font-medium text-thought/85 hover:bg-canvas">
+                  <%= item.title %>
+                </a>
+
+                <% if ((item.children || []).length > 0) { %>
+                  <div class="ml-2 border-l border-warmth/20">
+                    <% item.children.forEach((child) => { %>
+                      <a
+                        href="<%= child.url || '#' %>"
+                        class="block rounded-lg px-3 py-2 text-sm text-thought/70 hover:bg-canvas hover:text-action"
+                      >
+                        <%= child.title %>
+                      </a>
+                    <% }) %>
+                  </div>
+                <% } %>
+              </div>
+            <% }) %>
+          </div>
+        </details>
+      </div>
+    </div>
+  </nav>
+</header>
+

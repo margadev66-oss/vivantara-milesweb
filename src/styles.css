@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* Tailwind v4 needs explicit sources when compiling outside Next.js. */
+@source "../views/**/*.ejs";
+
+@theme {
+  --color-canvas: #f6f0e6;
+  --color-thought: #1b2635;
+  --color-warmth: #8f7457;
+  --color-sandstone: #d7c2a7;
+  --color-action: #E07B7B;
+  --color-ink: #101925;
+  --color-surface: #fffaf3;
+  --color-surface-strong: #f5ebdd;
+
+  --font-sans: "Avenir Next", "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Baskerville Old Face", "Palatino Linotype", Georgia, serif;
+
+  --text-6xl: 2.75rem;
+  --layout-max-width: 80rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    background:
+      radial-gradient(75% 40% at 0% 0%, color-mix(in oklab, var(--color-sandstone) 28%, white) 0%, transparent 70%),
+      radial-gradient(60% 30% at 100% 10%, color-mix(in oklab, var(--color-action) 14%, white) 0%, transparent 75%),
+      linear-gradient(180deg, var(--color-canvas) 0%, color-mix(in oklab, var(--color-canvas) 82%, white) 100%);
+    color: var(--color-thought);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+  }
+}
+
+@layer components {
+  .public-shell section {
+    max-width: var(--layout-max-width) !important;
+    margin-inline: auto;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in oklab, var(--color-warmth) 18%, transparent),
+      0 26px 54px -40px rgba(16, 25, 37, 0.45);
+  }
+
+  .public-shell .container[class*="max-w-"] {
+    max-width: var(--layout-max-width) !important;
+  }
+
+  .public-shell main > .container,
+  .public-shell main > article.container {
+    max-width: var(--layout-max-width) !important;
+  }
+
+  .public-shell main > section + section {
+    margin-top: 1rem;
+  }
+
+  .page-wrap {
+    position: relative;
+  }
+
+  .page-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-warmth) 10%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 36px 1px;
+    opacity: 0.15;
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
+
+  .section-card {
+    background: color-mix(in oklab, var(--color-surface) 94%, white);
+    border: 1px solid color-mix(in oklab, var(--color-warmth) 24%, transparent);
+    box-shadow: 0 24px 46px -34px rgba(22, 30, 42, 0.35);
+  }
+
+  .section-card-strong {
+    background: linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--color-surface-strong) 78%, white),
+      color-mix(in oklab, var(--color-surface) 86%, white)
+    );
+    border: 1px solid color-mix(in oklab, var(--color-thought) 16%, transparent);
+    box-shadow: 0 30px 54px -36px rgba(16, 25, 37, 0.35);
+  }
+
+  .eyebrow {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: color-mix(in oklab, var(--color-warmth) 92%, white);
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--color-action);
+    color: #fff;
+    font-weight: 600;
+    border: 1px solid color-mix(in oklab, var(--color-action) 84%, black);
+    transition: transform 220ms ease, background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-1px);
+    background: color-mix(in oklab, var(--color-action) 90%, black);
+  }
+
+  .deep-panel {
+    background:
+      radial-gradient(75% 45% at 5% 0%, color-mix(in oklab, var(--color-action) 20%, transparent), transparent 80%),
+      linear-gradient(150deg, color-mix(in oklab, var(--color-ink) 95%, white), var(--color-thought));
+    border: 1px solid color-mix(in oklab, var(--color-sandstone) 14%, transparent);
+  }
+}
+

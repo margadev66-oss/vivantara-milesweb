@@ -1,0 +1,85 @@
+<%- include("../partials/public-start", { title }) %>
+
+<% const frameworkSections = [
+  {
+    title: "Organisational Stress Response (OSR)",
+    paragraphs: [
+      "Every organisation has a characteristic way of responding when things go wrong.",
+      "Some become confused. Some fragment. Some coordinate. Some adapt.",
+      "Organisational Stress Response is the lens through which Vivartana understands how people within an organisation sense, interpret, coordinate, and hold together under strain.",
+    ],
+  },
+  {
+    title: "ORI Scan(TM) - Organisational Response Imaging",
+    paragraphs: [
+      "The ORI Scan(TM) functions like an imaging process for organisations.",
+      "Through structured conversations and observations, it reveals how the organisation actually behaves under pressure across six critical dimensions.",
+      "These patterns often remain invisible in routine functioning but become decisive in moments of stress and disruption.",
+    ],
+  },
+  {
+    title: "Organisational Operating System (OOS(TM))",
+    paragraphs: [
+      "At any point in time, an organisation operates at a certain level of maturity in how it responds to challenges.",
+      "This operating maturity is referred to as its Organisational Operating System (OOS(TM)).",
+      "As organisations strengthen the dimensions revealed by the ORI Scan(TM), their OOS(TM) progressively matures.",
+    ],
+  },
+  {
+    title: "Antifragility & the Antifragility Achievement Index (AAI(TM))",
+    paragraphs: [
+      "Antifragility is the state where an organisation does not merely withstand stress but grows stronger through it.",
+      "The Antifragility Achievement Index (AAI(TM)) is used to observe how well an organisation's current OOS(TM) supports coherent functioning under pressure.",
+      "As the OOS(TM) matures, the AAI(TM) improves, indicating a movement toward antifragility.",
+    ],
+  },
+  {
+    title: "Cognitive Diversity and Neurodiversity",
+    paragraphs: [
+      "Different minds respond differently under stress.",
+      "Abilities such as pattern recognition, deep focus, systems thinking, and signal detection often become most valuable in ambiguous and high-pressure situations.",
+      "Vivartana's frameworks help organisations recognise and deploy these strengths where they matter most.",
+    ],
+  },
+]; %>
+
+<main class="relative min-h-screen bg-canvas pt-12 pb-24 px-6 overflow-hidden">
+  <img src="/assests/knowledge-assests/bg.jpg" alt="Frameworks background image" class="absolute inset-0 h-full w-full object-cover object-center" />
+  <div class="absolute inset-0 bg-gradient-to-b from-canvas/46 via-canvas/68 to-canvas/84"></div>
+
+  <div class="container mx-auto max-w-7xl relative z-10">
+    <h1 class="text-4xl md:text-6xl font-serif text-thought mb-8">Frameworks That Inform Vivartana's Work</h1>
+
+    <div class="space-y-6 text-thought/75 text-lg leading-relaxed max-w-4xl mb-14">
+      <p>
+        Vivartana's work is grounded in a set of interlinked frameworks that help organisations understand how they function under pressure and how they can progressively strengthen their internal coherence.
+      </p>
+      <p>These frameworks are simple to understand, yet powerful in application.</p>
+    </div>
+
+    <section class="space-y-8 mb-12">
+      <% frameworkSections.forEach((section) => { %>
+        <article class="border border-warmth/20 bg-white p-8 md:p-10">
+          <h2 class="text-3xl font-serif text-thought mb-5"><%= section.title %></h2>
+          <div class="space-y-4 text-thought/75 text-lg leading-relaxed">
+            <% section.paragraphs.forEach((paragraph) => { %>
+              <p><%= paragraph %></p>
+            <% }) %>
+          </div>
+        </article>
+      <% }) %>
+    </section>
+
+    <section class="border border-thought/10 bg-thought text-white p-8 md:p-10">
+      <p class="text-white text-lg leading-relaxed">
+        These frameworks together provide a structured way to understand and strengthen how organisations function when tested.
+      </p>
+      <p class="text-white text-lg leading-relaxed mt-4">
+        They form the intellectual foundation of Vivartana's work.
+      </p>
+    </section>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

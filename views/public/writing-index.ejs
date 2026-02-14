@@ -1,0 +1,78 @@
+<%- include("../partials/public-start", { title }) %>
+
+<main class="min-h-screen bg-canvas pt-12 pb-24 px-6">
+  <div class="container mx-auto max-w-7xl">
+    <% if (editablePage) { %>
+      <section class="section-card rounded-2xl p-8 md:p-10 mb-12">
+        <h1 class="text-4xl md:text-5xl font-serif text-thought mb-6"><%= editablePage.title %></h1>
+        <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-thought prose-p:text-thought/85 prose-li:text-thought/85 prose-a:text-action">
+          <%- editablePage.content %>
+        </div>
+      </section>
+    <% } else { %>
+      <h1 class="text-4xl md:text-5xl font-serif text-thought mb-4">Articles</h1>
+      <p class="text-thought/60 text-lg mb-12 max-w-2xl">
+        Essays and reflections across individuals, teams, organisations, and research.
+      </p>
+    <% } %>
+
+    <div class="flex flex-col md:flex-row gap-12">
+      <aside class="w-full md:w-64 flex-shrink-0">
+        <h3 class="text-sm uppercase tracking-widest text-warmth mb-4 border-b border-warmth/20 pb-2">Categories</h3>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="/writing"
+              class="block text-sm <%= !selectedCategory ? 'text-action font-medium' : 'text-thought/70 hover:text-thought' %>"
+            >
+              All Articles
+            </a>
+          </li>
+          <% (categories || []).forEach((c) => { %>
+            <li>
+              <a
+                href="/writing?category=<%= encodeURIComponent(c.category) %>"
+                class="block text-sm <%= selectedCategory === c.category ? 'text-action font-medium' : 'text-thought/70 hover:text-thought' %>"
+              >
+                <%= c.category %>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      </aside>
+
+      <div class="flex-1">
+        <% if ((posts || []).length > 0) { %>
+          <div class="grid gap-12">
+            <% posts.forEach((post) => { %>
+              <article class="group border-b border-warmth/10 pb-8 last:border-0">
+                <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-warmth mb-2">
+                  <span><%= post.category %></span>
+                  <span>&middot;</span>
+                  <time><%= new Date(post.createdAt).toLocaleDateString() %></time>
+                </div>
+                <a href="/writing/<%= encodeURIComponent(post.slug) %>">
+                  <h2 class="text-2xl font-serif text-thought group-hover:text-action transition-colors mb-3">
+                    <%= post.title %>
+                  </h2>
+                </a>
+                <% const excerpt = String(post.content || '').replace(/<[^>]*>?/gm, '').substring(0, 200); %>
+                <div class="text-thought/80 leading-relaxed line-clamp-3 mb-4"><%= excerpt %>...</div>
+                <a href="/writing/<%= encodeURIComponent(post.slug) %>" class="inline-block text-sm font-medium text-action hover:underline">
+                  Read Essay
+                </a>
+              </article>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="p-12 text-center border border-dashed border-warmth/30 rounded">
+            <p class="text-thought/60">No articles found in this category.</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

@@ -1,0 +1,42 @@
+<%- include("../partials/document-start", { title }) %>
+
+<div class="min-h-screen flex items-center justify-center bg-canvas px-6">
+  <form method="post" action="/auth/signin" class="bg-white p-8 border border-warmth/20 shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-serif text-thought mb-6">Vivartana Admin</h1>
+
+    <% if (error) { %>
+      <div class="mb-4 border border-red-500/30 bg-white p-3 text-red-500 text-sm"><%= error %></div>
+    <% } %>
+
+    <input type="hidden" name="returnTo" value="<%= returnTo %>" />
+
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-thought mb-2">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        class="w-full p-2 border border-warmth/30 focus:border-thought outline-none"
+        required
+      />
+    </div>
+
+    <div class="mb-6">
+      <label for="password" class="block text-sm font-medium text-thought mb-2">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        class="w-full p-2 border border-warmth/30 focus:border-thought outline-none"
+        required
+      />
+    </div>
+
+    <button type="submit" class="w-full bg-thought text-white py-2 font-medium hover:bg-thought/90 transition-colors">
+      Sign In
+    </button>
+  </form>
+</div>
+
+<%- include("../partials/document-end") %>
+

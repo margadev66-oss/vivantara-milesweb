@@ -1,0 +1,109 @@
+<%- include("../partials/public-start", { title }) %>
+
+<main class="min-h-screen bg-canvas pt-12 pb-24 px-6">
+  <div class="container mx-auto max-w-7xl">
+    <h1 class="text-4xl md:text-6xl font-serif text-thought mb-8">Start the Conversation</h1>
+
+    <% if (sent) { %>
+      <div class="mb-8 border border-action/30 bg-white p-4 text-thought/80">
+        Thank you. Your message has been sent.
+      </div>
+    <% } %>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <section class="bg-white p-8 border border-warmth/20 h-fit">
+        <% if (editablePage) { %>
+          <h2 class="text-3xl font-serif text-thought mb-5"><%= editablePage.title %></h2>
+          <div class="prose prose-lg max-w-none prose-headings:font-serif prose-headings:text-thought prose-p:text-thought/85 prose-li:text-thought/85 prose-a:text-action">
+            <%- editablePage.content %>
+          </div>
+        <% } else { %>
+          <div class="mb-8 flex justify-center">
+            <div class="relative h-44 w-44 overflow-hidden rounded-full border border-warmth/20 shadow-[0_14px_34px_-24px_rgba(16,25,37,0.45)]">
+              <img
+                src="/assests/contact/potrait.png"
+                alt="Founder portrait"
+                class="absolute inset-0 h-full w-full object-cover object-[50%_14%] scale-[1.06]"
+              />
+            </div>
+          </div>
+          <h2 class="text-3xl font-serif text-thought mb-5">What to Expect</h2>
+          <p class="text-thought/75 text-lg leading-relaxed mb-8">
+            An initial conversation to understand your context, challenges, and interest areas. From there, the possibility of beginning with an ORI Scan(TM) (Organisational Response Imaging) can be explored.
+          </p>
+
+          <h3 class="text-2xl font-serif text-thought mb-4">Reach Out</h3>
+          <ul class="space-y-3 text-lg">
+            <li class="text-thought/80">
+              Email:
+              <a href="mailto:aumlaan@vivartana.com" class="text-action hover:underline">aumlaan@vivartana.com</a>
+            </li>
+            <li class="text-thought/80">
+              LinkedIn:
+              <a
+                href="https://www.linkedin.com/in/aumlan"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-action hover:underline"
+              >
+                linkedin.com/in/aumlan
+              </a>
+            </li>
+            <li class="text-thought/80">
+              Facebook:
+              <a
+                href="https://www.facebook.com/aumlaan/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-action hover:underline"
+              >
+                facebook.com/aumlaan
+              </a>
+            </li>
+          </ul>
+
+          <p class="text-thought font-medium text-lg leading-relaxed mt-10">
+            Clarity under pressure starts with a simple conversation.
+          </p>
+        <% } %>
+      </section>
+
+      <section class="bg-white p-8 border border-warmth/20">
+        <h2 class="text-3xl font-serif text-thought mb-6">Send a Message</h2>
+        <form method="post" action="/contact" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-thought font-medium mb-2" for="name">Name</label>
+              <input id="name" type="text" name="name" required class="w-full p-3 border border-warmth/30 focus:border-thought outline-none" />
+            </div>
+            <div>
+              <label class="block text-thought font-medium mb-2" for="email">Email</label>
+              <input id="email" type="email" name="email" required class="w-full p-3 border border-warmth/30 focus:border-thought outline-none" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-thought font-medium mb-2" for="subject">Subject</label>
+            <select id="subject" name="subject" class="w-full p-3 border border-warmth/30 focus:border-thought outline-none bg-white">
+              <option>General Enquiry</option>
+              <option>Engage with Us</option>
+              <option>Knowledge Assets</option>
+              <option>Ongoing Research</option>
+              <option>Resources</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-thought font-medium mb-2" for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required class="w-full p-3 border border-warmth/30 focus:border-thought outline-none"></textarea>
+          </div>
+
+          <button type="submit" class="cta-button h-10 px-5 text-sm whitespace-nowrap sm:text-base">Send Message</button>
+        </form>
+      </section>
+    </div>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

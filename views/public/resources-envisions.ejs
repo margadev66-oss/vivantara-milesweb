@@ -1,0 +1,59 @@
+<%- include("../partials/public-start", { title }) %>
+
+<% const reflections = [
+  "How early life environments influence adult behaviour in teams and leadership",
+  "How societal norms quietly shape organisational culture",
+  "How cognitive and behavioural patterns travel from homes to workplaces",
+  "How stress reveals the underlying coherence - or incoherence - in human systems",
+  "How clarity can emerge when we learn to observe these patterns without judgement",
+]; %>
+
+<main class="relative min-h-screen bg-canvas pt-12 pb-24 px-6 overflow-hidden">
+  <img src="/assests/resoursces/bg.jpeg" alt="Resources envisions background image" class="absolute inset-0 h-full w-full object-cover object-center" />
+  <div class="absolute inset-0 bg-gradient-to-b from-canvas/68 via-canvas/88 to-canvas/96"></div>
+
+  <div class="container mx-auto max-w-7xl relative z-10">
+    <h1 class="text-4xl md:text-6xl font-serif text-thought mb-8">Vivartana enVisions</h1>
+
+    <div class="space-y-6 text-thought/75 text-lg leading-relaxed max-w-4xl mb-14">
+      <p>enVisions is a reflective thought series exploring how human behaviour patterns shape families, societies, and organisations.</p>
+      <p>These writings do not present frameworks, methods, or solutions.</p>
+      <p>They explore observations, questions, and patterns that often go unnoticed - until pressure exposes them.</p>
+    </div>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-10">
+      <h2 class="text-3xl font-serif text-thought mb-6">What these reflections explore</h2>
+      <ul class="space-y-3">
+        <% reflections.forEach((item) => { %>
+          <li class="text-thought/80 text-lg leading-relaxed"><%= item %></li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-10">
+      <h2 class="text-3xl font-serif text-thought mb-5">Why this series exists</h2>
+      <p class="text-thought/75 text-lg leading-relaxed mb-4">Before organisations can be understood, the people within them must be understood.</p>
+      <p class="text-thought/75 text-lg leading-relaxed">Before systems can be redesigned, the human patterns that sustain them must be seen clearly.</p>
+      <p class="text-thought/75 text-lg leading-relaxed mt-4">enVisions is a space to think about these patterns.</p>
+    </section>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-12">
+      <h2 class="text-3xl font-serif text-thought mb-5">A continuing inquiry</h2>
+      <p class="text-thought/75 text-lg leading-relaxed mb-3">From authoritarian parenting to leadership styles,</p>
+      <p class="text-thought/75 text-lg leading-relaxed mb-3">from family dynamics to team behaviour,</p>
+      <p class="text-thought/75 text-lg leading-relaxed mb-4">from societal conditioning to organisational response under pressure.</p>
+      <p class="text-thought/75 text-lg leading-relaxed">These reflections trace the invisible threads that connect them.</p>
+    </section>
+
+    <section class="border border-thought/10 bg-thought text-white p-8 md:p-10">
+      <h2 class="text-3xl font-serif mb-5">A quiet note</h2>
+      <p class="text-white text-lg leading-relaxed mb-3">This is not a blog.</p>
+      <p class="text-white text-lg leading-relaxed mb-3">Not research.</p>
+      <p class="text-white text-lg leading-relaxed mb-3">Not consultancy material.</p>
+      <p class="text-white text-lg leading-relaxed">Just a space to pause, observe, and think.</p>
+    </section>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

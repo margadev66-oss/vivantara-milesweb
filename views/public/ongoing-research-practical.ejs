@@ -1,0 +1,76 @@
+<%- include("../partials/public-start", { title }) %>
+
+<% const practicalGains = [
+  "Understand why capable people appear to underperform in critical situations",
+  "Recognise how leadership behaviour influences collective response under pressure",
+  "See how Cognitive Diversity and Neurodiversity affect performance in complex environments",
+  "Identify gaps between leadership intent and team behaviour",
+  "Strengthen internal coherence rather than relying only on process and structure",
+]; %>
+
+<% const translatedFrameworks = [
+  "Organisational Stress Response",
+  "ORI Scan(TM) (Organisational Response Imaging)",
+  "Organisational Operating System (OOS(TM))",
+]; %>
+
+<main class="relative min-h-screen bg-canvas pt-12 pb-24 px-6 overflow-hidden">
+  <img src="/assests/research/bg2.jpeg" alt="Practical implications background image" class="absolute inset-0 h-full w-full object-cover object-center" />
+  <div class="absolute inset-0 bg-gradient-to-b from-canvas/48 via-canvas/70 to-canvas/86"></div>
+
+  <div class="container mx-auto max-w-7xl relative z-10">
+    <h1 class="text-4xl md:text-6xl font-serif text-thought mb-8">Practical Implications for Organisations</h1>
+
+    <div class="space-y-6 text-thought/75 text-lg leading-relaxed max-w-4xl mb-14">
+      <p>While the research is ongoing, its direction already points toward important practical questions for organisations.</p>
+      <p>
+        At its heart lies a simple idea: the way organisations behave under stress is shaped by deeper internal properties that are often overlooked in routine operations.
+      </p>
+      <p>Understanding and strengthening these properties has significant practical implications.</p>
+    </div>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-10">
+      <h2 class="text-3xl font-serif text-thought mb-6">What Organisations May Gain from This Work</h2>
+      <p class="text-thought/75 text-lg leading-relaxed mb-6">This line of research seeks to help organisations:</p>
+      <ul class="space-y-3">
+        <% practicalGains.forEach((item) => { %>
+          <li class="text-thought/80 text-lg leading-relaxed"><%= item %></li>
+        <% }) %>
+      </ul>
+    </section>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-10">
+      <h2 class="text-3xl font-serif text-thought mb-5">From Insight to Action</h2>
+      <p class="text-thought/75 text-lg leading-relaxed mb-6">
+        These ideas are already being translated into practice through Vivartana's frameworks such as:
+      </p>
+      <ul class="space-y-3 mb-6">
+        <% translatedFrameworks.forEach((framework) => { %>
+          <li class="text-thought/80 text-lg leading-relaxed"><%= framework %></li>
+        <% }) %>
+      </ul>
+      <p class="text-thought/75 text-lg leading-relaxed">
+        These frameworks aim to make research insights usable in real organisational settings.
+      </p>
+    </section>
+
+    <section class="border border-warmth/20 bg-white p-8 md:p-10 mb-12">
+      <h2 class="text-3xl font-serif text-thought mb-5">Why This Matters in Today's Context</h2>
+      <div class="space-y-4 text-thought/75 text-lg leading-relaxed">
+        <p>In fast-changing, AI-enabled, and high-pressure environments, organisations need more than process efficiency.</p>
+        <p>They need the ability to function coherently when tested.</p>
+        <p>This research aims to understand how that capability can be observed and progressively strengthened.</p>
+      </div>
+    </section>
+
+    <section class="border border-thought/10 bg-thought text-white p-8 md:p-10">
+      <h2 class="text-3xl font-serif mb-5">Closing</h2>
+      <p class="text-white text-lg leading-relaxed">
+        As the research progresses, its practical implications will continue to inform how Vivartana supports organisations in strengthening their response to stress and disruption.
+      </p>
+    </section>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

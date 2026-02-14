@@ -1,0 +1,36 @@
+<%- include("../partials/public-start", { title }) %>
+
+<main class="min-h-screen bg-canvas pt-12 pb-24 px-6">
+  <div class="container mx-auto max-w-7xl">
+    <h1 class="text-4xl md:text-5xl font-serif text-thought mb-12 border-b border-warmth/20 pb-6"><%= title %></h1>
+
+    <% if ((posts || []).length > 0) { %>
+      <div class="grid gap-12">
+        <% posts.forEach((post) => { %>
+          <article class="group">
+            <a href="/writing/<%= encodeURIComponent(post.slug) %>">
+              <h2 class="text-2xl font-serif text-thought group-hover:text-action transition-colors mb-3"><%= post.title %></h2>
+            </a>
+            <div class="text-sm text-warmth mb-4"><%= new Date(post.createdAt).toLocaleDateString() %></div>
+            <% const excerpt = String(post.content || '').replace(/<[^>]*>?/gm, '').substring(0, 300); %>
+            <div class="text-thought/80 leading-relaxed line-clamp-3"><%= excerpt %>...</div>
+            <a
+              href="/writing/<%= encodeURIComponent(post.slug) %>"
+              class="inline-block mt-4 text-sm font-medium text-action border-b border-action/20 hover:border-action transition-colors"
+            >
+              Read Essay
+            </a>
+          </article>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="py-12 text-center border border-dashed border-warmth/30 rounded">
+        <p class="text-thought/60 text-lg">Coming soon.</p>
+        <p class="text-thought/40 mt-2">Content for this section is being curated.</p>
+      </div>
+    <% } %>
+  </div>
+</main>
+
+<%- include("../partials/public-end") %>
+

@@ -1,0 +1,20 @@
+<%- include("../partials/public-start", { title }) %>
+
+<main class="min-h-screen bg-canvas pt-12 pb-24 px-6">
+  <article class="container mx-auto max-w-7xl">
+    <header class="mb-12 text-center">
+      <div class="text-sm uppercase tracking-widest text-warmth mb-4"><%= post.category %></div>
+      <h1 class="text-4xl md:text-5xl font-serif text-thought leading-tight mb-6"><%= post.title %></h1>
+      <time class="text-thought/60 italic">
+        <%= new Date(post.createdAt).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) %>
+      </time>
+    </header>
+
+    <div class="prose prose-lg prose-headings:font-serif prose-headings:text-thought prose-p:text-thought/90 prose-a:text-action max-w-none">
+      <%- post.content %>
+    </div>
+  </article>
+</main>
+
+<%- include("../partials/public-end") %>
+

@@ -1,0 +1,12 @@
+<%- include("../partials/public-start", { title }) %>
+<main class="min-h-screen bg-canvas pt-12 pb-24 px-6">
+  <div class="container mx-auto max-w-4xl">
+    <section class="section-card rounded-2xl p-8 md:p-10">
+      <h1 class="text-4xl md:text-5xl font-serif text-thought mb-6">Server error</h1>
+      <p class="text-thought/70 text-lg leading-relaxed mb-8"><%= message || "Something went wrong." %></p>
+      <a href="/home" class="cta-button h-10 px-5 text-sm whitespace-nowrap sm:text-base">Go to Home</a>
+    </section>
+  </div>
+</main>
+<%- include("../partials/public-end") %>
+
