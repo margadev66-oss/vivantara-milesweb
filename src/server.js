@@ -1,3 +1,8 @@
+const path = require("path");
+
+// cPanel/Passenger and other hosts may start the process with a cwd that is not the app root.
+// Load `.env` from the project root first, then fall back to the default cwd lookup.
+require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 require("dotenv").config();
 const createApp = require("./app");
 

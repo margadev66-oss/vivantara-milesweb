@@ -4,6 +4,7 @@ const express = require("express");
 const cookieSession = require("cookie-session");
 
 const { loadMenu } = require("./middleware/load-menu");
+const seoRoutes = require("./routes/seo");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const publicRoutes = require("./routes/public");
@@ -36,6 +37,9 @@ function createApp() {
       httpOnly: true,
     })
   );
+
+  // Dynamic robots/sitemap (must be before static so it can override public/robots.txt, public/sitemap.xml).
+  app.use(seoRoutes);
 
   // Static assets live in `milesweb-express/public` (self-contained for MilesWeb deployments).
   app.use(express.static(path.join(__dirname, "..", "public")));

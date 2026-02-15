@@ -19,6 +19,12 @@ function isPrismaConnectionError(error) {
     return true;
   }
 
+  // On constrained hosts, the Prisma query engine can panic due to missing system resources
+  // (threads/timers). Treat this as a "connection-like" failure so public pages can fall back.
+  if (error instanceof Prisma.PrismaClientRustPanicError) {
+    return true;
+  }
+
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
     return PRISMA_CONNECTION_ERROR_CODES.has(error.code);
   }
@@ -45,4 +51,3 @@ async function withPrismaFallback(query, fallback, scope) {
 }
 
 module.exports = { prisma, withPrismaFallback };
-

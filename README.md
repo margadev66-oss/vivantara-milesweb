@@ -12,6 +12,7 @@ This folder contains an Express.js rebuild of the Vivartana platform for MilesWe
 
 - `DATABASE_URL`: `mysql://USER:PASSWORD@127.0.0.1:3306/DBNAME`
 - `SESSION_SECRET`: Used to sign the admin session cookie.
+- `SITE_URL` (recommended): Base URL used for absolute URLs in `sitemap.xml` and `robots.txt` (e.g. `https://vivartana.com`)
 - `PORT`: default `3000`
 - `HOST`: default `0.0.0.0`
 

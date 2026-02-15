@@ -39,44 +39,53 @@ function fallbackMenuItems() {
 }
 
 async function loadMenu(req, res, next) {
-  const menuItems = await withPrismaFallback(
-    () =>
-      prisma.menuItem.findMany({
-        where: { parentId: null },
-        select: {
-          id: true,
-          title: true,
-          url: true,
-          order: true,
-          children: {
-            select: {
-              id: true,
-              title: true,
-              url: true,
-              order: true,
+  try {
+    const menuItems = await withPrismaFallback(
+      () =>
+        prisma.menuItem.findMany({
+          where: { parentId: null },
+          select: {
+            id: true,
+            title: true,
+            url: true,
+            order: true,
+            children: {
+              select: {
+                id: true,
+                title: true,
+                url: true,
+                order: true,
+              },
+              orderBy: { order: "asc" },
             },
-            orderBy: { order: "asc" },
           },
-        },
-        orderBy: { order: "asc" },
-      }),
-    fallbackMenuItems(),
-    "loadMenu.menuItems"
-  );
+          orderBy: { order: "asc" },
+        }),
+      fallbackMenuItems(),
+      "loadMenu.menuItems"
+    );
 
-  res.locals.menuItems = menuItems.map((item) => {
-    if (item.url === "/engage") {
-      return {
-        ...item,
-        children: normalizeEngageChildren(item.children || []),
-      };
-    }
+    res.locals.menuItems = menuItems.map((item) => {
+      if (item.url === "/engage") {
+        return {
+          ...item,
+          children: normalizeEngageChildren(item.children || []),
+        };
+      }
 
-    return item;
-  });
+      return item;
+    });
 
-  next();
+    next();
+  } catch (error) {
+    // Express 4 does not automatically handle rejected promises from async middleware.
+    // If Prisma panics (or anything unexpected happens), fall back to the static nav
+    // so the whole app doesn't go down with a 503.
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[menu-fallback] loadMenu.menuItems: ${message}`);
+    res.locals.menuItems = fallbackMenuItems();
+    next();
+  }
 }
 
 module.exports = { loadMenu };
-
