@@ -38,11 +38,12 @@ function createApp() {
     })
   );
 
-  // Dynamic robots/sitemap (must be before static so it can override public/robots.txt, public/sitemap.xml).
-  app.use(seoRoutes);
-
   // Static assets live in `milesweb-express/public` (self-contained for MilesWeb deployments).
   app.use(express.static(path.join(__dirname, "..", "public")));
+
+  // Static files win. If `public/sitemap.xml` or `public/robots.txt` are removed,
+  // fall back to the dynamic generator.
+  app.use(seoRoutes);
 
   app.use((req, res, next) => {
     res.locals.sessionUser = req.session?.user || null;

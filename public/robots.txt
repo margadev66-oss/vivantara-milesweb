@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin
+Disallow: /auth
+Disallow: /api
+
+Sitemap: https://vivartana.com/sitemap.xml
+
