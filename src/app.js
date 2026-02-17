@@ -67,12 +67,12 @@ function createApp() {
     cookieSession(sessionOptions)
   );
 
-  // Static assets live in `milesweb-express/public` (self-contained for MilesWeb deployments).
-  app.use(express.static(path.join(__dirname, "..", "public")));
-
-  // Static files win. If `public/sitemap.xml` or `public/robots.txt` are removed,
-  // fall back to the dynamic generator.
+  // Serve dynamic SEO endpoints first so they work even if a host leaves behind old static files.
+  // (On cPanel/Passenger deployments, stale `public/sitemap.xml` can otherwise override the route.)
   app.use(seoRoutes);
+
+  // Static assets live in `public` (self-contained for MilesWeb deployments).
+  app.use(express.static(path.join(__dirname, "..", "public")));
 
   app.use((req, res, next) => {
     res.locals.sessionUser = req.session?.user || null;

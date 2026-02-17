@@ -168,6 +168,7 @@ router.get("/sitemap.xml", async (req, res, next) => {
     const baseUrl = getBaseUrl(req);
 
     const staticPaths = [
+      "/",
       "/home",
       "/contact",
       "/writing",

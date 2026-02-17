@@ -37,7 +37,10 @@ To receive contact form submissions via email, set the following environment var
      - `mysql://cohdttpf_aumlaan:YOUR_DB_PASSWORD@localhost:3306/cohdttpf_vivartana`
    - Do not wrap the value in quotes in cPanel.
    - If admin login loops back to sign-in, set `SESSION_COOKIE_SECURE=false` and restart the app.
+   - Troubleshooting (DB/env issues): `MILESWEB_DB_TROUBLESHOOTING.md`
 3. **Build**: Run `npm run build:milesweb`.
+   - Windows note: If `npm run build` / `prisma generate` fails with `EPERM ... query_engine-windows.dll.node.tmp -> query_engine-windows.dll.node`,
+     stop any running `npm start` / `node server.js` process and retry (the Prisma engine DLL is locked while the server is running).
 4. **Restart**: Restart the app in cPanel.
 
 ## UI Changes

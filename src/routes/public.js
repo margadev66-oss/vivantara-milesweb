@@ -9,7 +9,21 @@ const router = express.Router();
 
 console.log("[DEBUG] Loading public routes module - " + new Date().toISOString());
 
+function diagnosticsEnabled(req) {
+  // Allow diagnostics freely in non-production environments.
+  if (process.env.NODE_ENV !== "production") return true;
+
+  // In production, require a token so we don't leak environment details publicly.
+  const token = String(process.env.DIAG_TOKEN || "").trim();
+  if (!token) return false;
+
+  const provided = String(req.query.token || req.get("x-diag-token") || "").trim();
+  return Boolean(provided) && provided === token;
+}
+
 router.get("/__diag-db", (req, res) => {
+  if (!diagnosticsEnabled(req)) return res.status(404).send("Not Found");
+
   const raw = String(process.env.DATABASE_URL || "");
   const details = {
     protocol: "",
