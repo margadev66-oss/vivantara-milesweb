@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - /bin/echo "Starting Vivantara deployment"
+    - /usr/bin/env npm install --omit=dev
+    - /usr/bin/env npm run build:milesweb
