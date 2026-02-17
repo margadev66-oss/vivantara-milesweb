@@ -7,6 +7,33 @@ const { DEFAULT_HOME_CONTENT, mergeHomeContent } = require("../lib/home-content"
 
 const router = express.Router();
 
+router.get("/__diag-db", (req, res) => {
+  const raw = String(process.env.DATABASE_URL || "");
+  const details = {
+    protocol: "",
+    username: "",
+    host: "",
+    database: "",
+    parseError: "",
+  };
+
+  try {
+    const parsed = new URL(raw);
+    details.protocol = parsed.protocol;
+    details.username = parsed.username;
+    details.host = parsed.host;
+    details.database = parsed.pathname.replace(/^\/+/, "");
+  } catch (error) {
+    details.parseError = error instanceof Error ? error.message : String(error);
+  }
+
+  res.json({
+    pid: process.pid,
+    node: process.version,
+    databaseUrl: details,
+  });
+});
+
 // Email Transporter configuration
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
