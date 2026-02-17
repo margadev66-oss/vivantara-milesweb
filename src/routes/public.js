@@ -7,6 +7,8 @@ const { DEFAULT_HOME_CONTENT, mergeHomeContent } = require("../lib/home-content"
 
 const router = express.Router();
 
+console.log("[DEBUG] Loading public routes module - " + new Date().toISOString());
+
 router.get("/__diag-db", (req, res) => {
   const raw = String(process.env.DATABASE_URL || "");
   const details = {
