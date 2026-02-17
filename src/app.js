@@ -9,10 +9,31 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const publicRoutes = require("./routes/public");
 
+function parseBooleanEnv(value) {
+  if (value == null) return undefined;
+  const normalized = String(value).trim().toLowerCase();
+  if (normalized === "true" || normalized === "1" || normalized === "yes" || normalized === "on") return true;
+  if (normalized === "false" || normalized === "0" || normalized === "no" || normalized === "off") return false;
+  return undefined;
+}
+
+function parseTrustProxy(value) {
+  if (value == null || String(value).trim() === "") return 1;
+
+  const normalized = String(value).trim().toLowerCase();
+  if (normalized === "true") return true;
+  if (normalized === "false") return false;
+
+  const asNumber = Number(normalized);
+  if (Number.isInteger(asNumber) && asNumber >= 0) return asNumber;
+
+  return value;
+}
+
 function createApp() {
   const app = express();
 
-  app.set("trust proxy", 1);
+  app.set("trust proxy", parseTrustProxy(process.env.TRUST_PROXY));
   app.set("view engine", "ejs");
   app.set("views", path.join(__dirname, "..", "views"));
 
@@ -27,15 +48,23 @@ function createApp() {
     throw new Error("Missing SESSION_SECRET (or NEXTAUTH_SECRET / AUTH_SECRET) in production.");
   }
 
+  const cookieSecure = parseBooleanEnv(process.env.SESSION_COOKIE_SECURE);
+  const sessionOptions = {
+    name: "vivantara_session",
+    keys: [sessionSecret || "dev-insecure-secret"],
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    sameSite: "lax",
+    httpOnly: true,
+  };
+
+  // If unset, cookie-session auto-detects HTTPS from the request/proxy.
+  // This avoids silent auth failures on hosts that offload TLS.
+  if (cookieSecure !== undefined) {
+    sessionOptions.secure = cookieSecure;
+  }
+
   app.use(
-    cookieSession({
-      name: "vivantara_session",
-      keys: [sessionSecret || "dev-insecure-secret"],
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      httpOnly: true,
-    })
+    cookieSession(sessionOptions)
   );
 
   // Static assets live in `milesweb-express/public` (self-contained for MilesWeb deployments).

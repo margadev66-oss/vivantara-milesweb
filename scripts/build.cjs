@@ -67,7 +67,13 @@ let res = spawnSync(prismaBin, ["generate", "--schema", schemaPath], {
   stdio: "inherit",
   cwd: pkgDir,
   env: { ...process.env, CHECKPOINT_DISABLE: "1" },
+  // .cmd wrappers require a shell on Windows.
+  shell: process.platform === "win32",
 });
+if (res.error) {
+  console.error(`Error: Failed to run Prisma generate: ${res.error.message}`);
+  process.exit(1);
+}
 if ((res.status ?? 1) !== 0) process.exit(res.status ?? 1);
 
 // Then build CSS. See scripts/build-css.cjs for rationale.
@@ -75,6 +81,11 @@ res = spawnSync(postcssBin, [cssInput, "-o", cssOutput], {
   stdio: "inherit",
   cwd: pkgDir,
   env: { ...process.env, RAYON_NUM_THREADS: process.env.RAYON_NUM_THREADS || "1" },
+  shell: process.platform === "win32",
 });
+if (res.error) {
+  console.error(`Error: Failed to run CSS build: ${res.error.message}`);
+  process.exit(1);
+}
 process.exit(res.status ?? 1);
 
